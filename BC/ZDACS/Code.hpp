@@ -115,6 +115,17 @@ namespace GDCC::BC::ZDACS
       Jdyn        = 363,
       Drop_LocArr = 364,
       Push_LocArr = 365,
+      Cspe_6      = 500,
+      Cspe_7      = 501,
+      Cspe_8      = 502,
+      Cspe_9      = 503,
+      Cspe_10     = 504,
+      Cspe_6L     = 505,
+      Cspe_7L     = 506,
+      Cspe_8L     = 507,
+      Cspe_9L     = 508,
+      Cspe_10L    = 509,
+      Cspe_10R1   = 520,
    };
 }
 

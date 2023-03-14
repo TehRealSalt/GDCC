@@ -115,7 +115,7 @@ namespace GDCC::BC::ZDACS
          IR::ErrorCode(stmnt, "unsupported ret");
 
       // Too many call args.
-      if(getStmntSize() > 5)
+      if(getStmntSize() > 10)
          IR::ErrorCode(stmnt, "unsupported argc");
 
       if(stmnt->args.size() > 2) switch(stmnt->args[2].a)
@@ -209,8 +209,8 @@ namespace GDCC::BC::ZDACS
 
       genStmntDropParam(argc, argm);
 
-      if(retn && argn < 4)
-         numChunkCODE += (4 - argn) * 8;
+      if(retn && argn < 9)
+         numChunkCODE += (9 - argn) * 8;
 
       numChunkCODE += 8;
 
@@ -310,7 +310,7 @@ namespace GDCC::BC::ZDACS
          numChunkCODE += 8;
 
          // Dummy args.
-         if(ret) numChunkCODE += (5 - argc) * 8;
+         if(ret) numChunkCODE += (10 - argc) * 8;
 
          break;
 
@@ -474,7 +474,12 @@ namespace GDCC::BC::ZDACS
       case  1: putCode(Code::Push_Lit, 0);
       case  2: putCode(Code::Push_Lit, 0);
       case  3: putCode(Code::Push_Lit, 0);
-      default: putCode(Code::Cspe_5R1); break;
+      case  4: putCode(Code::Push_Lit, 0);
+      case  5: putCode(Code::Push_Lit, 0);
+      case  6: putCode(Code::Push_Lit, 0);
+      case  7: putCode(Code::Push_Lit, 0);
+      case  8: putCode(Code::Push_Lit, 0);
+      default: putCode(Code::Cspe_10R1); break;
       }
       else switch(argn)
       {
@@ -482,7 +487,12 @@ namespace GDCC::BC::ZDACS
       case  1: putCode(Code::Cspe_2); break;
       case  2: putCode(Code::Cspe_3); break;
       case  3: putCode(Code::Cspe_4); break;
-      default: putCode(Code::Cspe_5); break;
+      case  4: putCode(Code::Cspe_5); break;
+      case  5: putCode(Code::Cspe_6); break;
+      case  6: putCode(Code::Cspe_7); break;
+      case  7: putCode(Code::Cspe_8); break;
+      case  8: putCode(Code::Cspe_9); break;
+      default: putCode(Code::Cspe_10); break;
       }
 
       putWord(84); // ACS_ExecuteWithResult
@@ -511,7 +521,12 @@ namespace GDCC::BC::ZDACS
       case  1: putCode(Code::Cspe_2); break;
       case  2: putCode(Code::Cspe_3); break;
       case  3: putCode(Code::Cspe_4); break;
-      default: putCode(Code::Cspe_5); break;
+      case  4: putCode(Code::Cspe_5); break;
+      case  5: putCode(Code::Cspe_6); break;
+      case  6: putCode(Code::Cspe_7); break;
+      case  7: putCode(Code::Cspe_8); break;
+      case  8: putCode(Code::Cspe_9); break;
+      default: putCode(Code::Cspe_10); break;
       }
 
       putWord(84); // ACS_ExecuteWithResult
@@ -612,10 +627,10 @@ namespace GDCC::BC::ZDACS
                   putCode(Code::Push_Lit, getWord(arg.aLit, i));
             }
 
-            for(Core::FastU i = argc; i != 5; ++i)
+            for(Core::FastU i = argc; i != 10; ++i)
                putCode(Code::Push_Lit, 0);
 
-            putCode(Code::Cspe_5R1, getWord(stmnt->args[1].aLit));
+            putCode(Code::Cspe_10R1, getWord(stmnt->args[1].aLit));
 
             break;
          }
@@ -628,6 +643,11 @@ namespace GDCC::BC::ZDACS
          case 3: putCode(Code::Cspe_3L); break;
          case 4: putCode(Code::Cspe_4L); break;
          case 5: putCode(Code::Cspe_5L); break;
+         case 6: putCode(Code::Cspe_6L); break;
+         case 7: putCode(Code::Cspe_7L); break;
+         case 8: putCode(Code::Cspe_8L); break;
+         case 9: putCode(Code::Cspe_9L); break;
+         case 10: putCode(Code::Cspe_10L); break;
          }
 
          putWord(getWord(stmnt->args[1].aLit));
@@ -654,7 +674,12 @@ namespace GDCC::BC::ZDACS
             case 2: putCode(Code::Push_Lit, 0);
             case 3: putCode(Code::Push_Lit, 0);
             case 4: putCode(Code::Push_Lit, 0);
-            case 5: putCode(Code::Cspe_5R1); break;
+            case 5: putCode(Code::Push_Lit, 0);
+            case 6: putCode(Code::Push_Lit, 0);
+            case 7: putCode(Code::Push_Lit, 0);
+            case 8: putCode(Code::Push_Lit, 0);
+            case 9: putCode(Code::Push_Lit, 0);
+            case 10: putCode(Code::Cspe_10R1); break;
             }
          }
          else
@@ -667,6 +692,11 @@ namespace GDCC::BC::ZDACS
             case 3: putCode(Code::Cspe_3); break;
             case 4: putCode(Code::Cspe_4); break;
             case 5: putCode(Code::Cspe_5); break;
+            case 6: putCode(Code::Cspe_6); break;
+            case 7: putCode(Code::Cspe_7); break;
+            case 8: putCode(Code::Cspe_8); break;
+            case 9: putCode(Code::Cspe_9); break;
+            case 10: putCode(Code::Cspe_10); break;
             }
          }
 
